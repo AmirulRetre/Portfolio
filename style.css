@@ -548,6 +548,10 @@ a { color: inherit; text-decoration: none; }
   background: #1c1e2c;
 }
 
+.milestone-card.cert {
+  border-left: 3px solid #3b82f6;
+}
+
 /* ========== WRITEUPS SECTION ========== */
 #writeups {
   background: linear-gradient(180deg, var(--bg-light) 0%, var(--bg-mid) 100%);
