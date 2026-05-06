@@ -79,53 +79,26 @@ if (navToggle && navLinks) {
   });
 }
 
-// ---- Learning Track Horizontal Scroll ----
+// ---- Learning Track: Mouse wheel scrolls horizontally ----
 const learnTrack = document.getElementById('learnTrack');
-const scrollLeftBtn = document.getElementById('scrollLeft');
-const scrollRightBtn = document.getElementById('scrollRight');
 
-if (learnTrack && scrollLeftBtn && scrollRightBtn) {
-  const scrollAmount = 300;
+if (learnTrack) {
+  learnTrack.addEventListener('wheel', function(e) {
+    // Only hijack scroll when there's horizontal content to scroll
+    const maxScroll = learnTrack.scrollWidth - learnTrack.clientWidth;
+    if (maxScroll <= 0) return;
 
-  scrollLeftBtn.addEventListener('click', () => {
-    learnTrack.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-  });
+    // If at the edges and scrolling further in that direction, let page scroll normally
+    const atStart = learnTrack.scrollLeft <= 0 && e.deltaY < 0;
+    const atEnd = learnTrack.scrollLeft >= maxScroll - 1 && e.deltaY > 0;
+    if (atStart || atEnd) return;
 
-  scrollRightBtn.addEventListener('click', () => {
-    learnTrack.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-  });
-
-  // Mouse drag scroll
-  let isDown = false;
-  let startX;
-  let scrollLeftPos;
-
-  learnTrack.addEventListener('mousedown', (e) => {
-    isDown = true;
-    learnTrack.style.cursor = 'grabbing';
-    startX = e.pageX - learnTrack.offsetLeft;
-    scrollLeftPos = learnTrack.scrollLeft;
-  });
-
-  learnTrack.addEventListener('mouseleave', () => {
-    isDown = false;
-    learnTrack.style.cursor = 'grab';
-  });
-
-  learnTrack.addEventListener('mouseup', () => {
-    isDown = false;
-    learnTrack.style.cursor = 'grab';
-  });
-
-  learnTrack.addEventListener('mousemove', (e) => {
-    if (!isDown) return;
     e.preventDefault();
-    const x = e.pageX - learnTrack.offsetLeft;
-    const walk = (x - startX) * 1.5;
-    learnTrack.scrollLeft = scrollLeftPos - walk;
-  });
-
-  learnTrack.style.cursor = 'grab';
+    learnTrack.scrollBy({
+      left: e.deltaY * 2.5,
+      behavior: 'smooth'
+    });
+  }, { passive: false });
 }
 
 // ---- Wavy Achievement Timeline (Canvas) ----
