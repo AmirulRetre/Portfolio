@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amirul Irfan | @mirulRetre</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="nav" id="nav">
+    <div class="nav-brand">@mirulRetre</div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#learn">Learn</a>
+      <a href="#news">Updates</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#links">Links</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ========== HERO / TERMINAL ========== -->
+  <section class="hero" id="home">
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="terminal-dot red"></span>
+        <span class="terminal-dot yellow"></span>
+        <span class="terminal-dot green"></span>
+        <span class="terminal-title">guest@mirulRetre:~</span>
+      </div>
+      <div class="terminal-body">
+        <div class="terminal-line">
+          <span class="prompt">$</span>
+          <span class="typed" id="typed-name"></span>
+          <span class="cursor" id="cursor-name">█</span>
+        </div>
+        <div class="terminal-line hidden" id="line-title">
+          <span class="prompt">$</span>
+          <span class="typed" id="typed-title"></span>
+          <span class="cursor" id="cursor-title">█</span>
+        </div>
+        <div class="terminal-line hidden" id="line-desc">
+          <span class="prompt">$</span>
+          <span class="typed" id="typed-desc"></span>
+          <span class="cursor" id="cursor-desc">█</span>
+        </div>
+        <div class="terminal-line hidden" id="line-ready">
+          <span class="prompt">$</span>
+          <span class="ready-text">Portfolio loaded. Scroll to explore <span class="blink">▼</span></span>
+        </div>
+      </div>
+    </div>
+    <a href="#learn" class="scroll-hint" aria-label="Scroll down">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+      </svg>
+    </a>
+  </section>
+
+  <!-- ========== LEARNING JOURNEY (Horizontal Scroll) ========== -->
+  <section class="section" id="learn">
+    <div class="section-header">
+      <h2 class="section-title">Learning Journey</h2>
+      <p class="section-subtitle">Scroll sideways to explore my path</p>
+      <div class="scroll-arrows">
+        <button class="scroll-btn" id="scrollLeft" aria-label="Scroll left">←</button>
+        <button class="scroll-btn" id="scrollRight" aria-label="Scroll right">→</button>
+      </div>
+    </div>
+    <div class="learn-track" id="learnTrack">
+
+      <div class="learn-card">
+        <div class="card-date">2024</div>
+        <div class="card-icon">🎓</div>
+        <h3>Started Cybersecurity Journey</h3>
+        <p>Began exploring the world of cybersecurity, networking fundamentals, and ethical hacking concepts.</p>
+        <span class="card-tag">Foundation</span>
+      </div>
+
+      <div class="learn-card">
+        <div class="card-date">2024</div>
+        <div class="card-icon">🏴</div>
+        <h3>First CTF Competition</h3>
+        <p>Participated in my first Capture The Flag competition, learning real-world security challenges.</p>
+        <span class="card-tag">CTF</span>
+      </div>
+
+      <div class="learn-card">
+        <div class="card-date">2024</div>
+        <div class="card-icon">🔬</div>
+        <h3>AI Detection Research</h3>
+        <p>Completed final year project on AI Detection, exploring the intersection of AI and security.</p>
+        <span class="card-tag">Research</span>
+      </div>
+
+      <div class="learn-card">
+        <div class="card-date">2025</div>
+        <div class="card-icon">🛡️</div>
+        <h3>Security Tools & Techniques</h3>
+        <p>Deepened knowledge in penetration testing tools, vulnerability analysis, and defensive security.</p>
+        <span class="card-tag">Skills</span>
+      </div>
+
+      <div class="learn-card">
+        <div class="card-date">2025</div>
+        <div class="card-icon">📝</div>
+        <h3>CTF Writeups</h3>
+        <p>Started documenting CTF writeups to share knowledge and build a reference library.</p>
+        <span class="card-tag">Documentation</span>
+      </div>
+
+      <div class="learn-card">
+        <div class="card-date">2026</div>
+        <div class="card-icon">🚀</div>
+        <h3>What's Next?</h3>
+        <p>Continuing to grow — more competitions, certifications, and deeper security research ahead.</p>
+        <span class="card-tag">Future</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== NEWS / UPDATES ========== -->
+  <section class="section section-alt" id="news">
+    <div class="section-header">
+      <h2 class="section-title">Latest Updates</h2>
+      <p class="section-subtitle">What I've been up to lately</p>
+    </div>
+    <div class="news-grid">
+
+      <article class="news-card blog">
+        <div class="news-type">Blog</div>
+        <time>May 2026</time>
+        <h3>Portfolio Goes Live</h3>
+        <p>Launched my personal portfolio website to document my cybersecurity journey and CTF writeups.</p>
+      </article>
+
+      <article class="news-card activity">
+        <div class="news-type">Activity</div>
+        <time>Apr 2026</time>
+        <h3>CTF Competition</h3>
+        <p>Participated in a recent CTF event — writeup coming soon!</p>
+      </article>
+
+      <article class="news-card blog">
+        <div class="news-type">Blog</div>
+        <time>Mar 2026</time>
+        <h3>Setting Up My Lab</h3>
+        <p>Built a home lab environment for practicing penetration testing and security research.</p>
+      </article>
+
+      <article class="news-card activity">
+        <div class="news-type">Activity</div>
+        <time>Feb 2026</time>
+        <h3>New Tools Learned</h3>
+        <p>Started exploring Burp Suite, Ghidra, and other essential security tools in depth.</p>
+      </article>
+
+      <article class="news-card activity">
+        <div class="news-type">Activity</div>
+        <time>Jan 2026</time>
+        <h3>2026 Goals Set</h3>
+        <p>Set goals for the year: compete in more CTFs, earn certifications, and publish writeups.</p>
+      </article>
+
+      <article class="news-card blog">
+        <div class="news-type">Blog</div>
+        <time>Dec 2025</time>
+        <h3>Year in Review</h3>
+        <p>Reflected on a year of growth in cybersecurity — from beginner to active CTF competitor.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ========== ACHIEVEMENTS TIMELINE ========== -->
+  <section class="section" id="achievements">
+    <div class="section-header">
+      <h2 class="section-title">Achievements</h2>
+      <p class="section-subtitle">Milestones along the way</p>
+    </div>
+    <div class="timeline">
+
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <time>2024</time>
+          <h3>Final Year Project Completed</h3>
+          <p>Completed research on AI Detection as part of final year academic requirements.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <time>2024</time>
+          <h3>First CTF Participation</h3>
+          <p>Entered my first Capture The Flag competition and discovered a passion for security challenges.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <time>2025</time>
+          <h3>Started CTF Writeup Collection</h3>
+          <p>Began systematically documenting solutions and approaches for every CTF I participate in.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <time>2026</time>
+          <h3>Portfolio Website Launched</h3>
+          <p>Built and deployed a personal portfolio to showcase projects, writeups, and achievements.</p>
+        </div>
+      </div>
+
+      <!-- Add more achievements here -->
+      <div class="timeline-item left">
+        <div class="timeline-content placeholder">
+          <time>Coming</time>
+          <h3>Next Milestone</h3>
+          <p>More achievements loading... Stay tuned.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== LINKS ========== -->
+  <section class="section section-alt" id="links">
+    <div class="section-header">
+      <h2 class="section-title">Find Me Online</h2>
+      <p class="section-subtitle">Connect with me across the web</p>
+    </div>
+    <div class="links-grid">
+
+      <a href="https://github.com/AmirulRetre" target="_blank" rel="noopener" class="link-card">
+        <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+        </svg>
+        <span class="link-label">GitHub</span>
+        <span class="link-url">AmirulRetre</span>
+      </a>
+
+      <a href="https://www.linkedin.com/in/amirul-irfan-980a71281/" target="_blank" rel="noopener" class="link-card">
+        <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+        <span class="link-label">LinkedIn</span>
+        <span class="link-url">Amirul Irfan</span>
+      </a>
+
+      <a href="mailto:lanzailan2344@gmail.com" class="link-card">
+        <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+        <span class="link-label">Email</span>
+        <span class="link-url">lanzailan2344@gmail.com</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <p>Built by <strong>Amirul Irfan</strong> aka <strong>@mirulRetre</strong></p>
+    <p class="footer-sub">© 2026 — All rights reserved</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

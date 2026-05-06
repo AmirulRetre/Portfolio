@@ -1,0 +1,45 @@
+# ========================================
+# Portfolio .gitignore
+# ========================================
+
+# --- Sensitive / Private Files ---
+*.pdf
+*.doc
+*.docx
+*.key
+*.pem
+*.env
+.env*
+*.secret
+
+# --- API Keys & Credentials ---
+config.json
+secrets.json
+credentials.json
+*.credential
+
+# --- OS Generated Files ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Editor / IDE Files ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- Temporary Files ---
+temporary screenshots/
+*.tmp
+*.log
+
+# --- Node (if you add packages later) ---
+node_modules/
+package-lock.json
+
+# --- Claude Project Files ---
+CLAUDE.md
+serve.mjs
+screenshot.mjs
