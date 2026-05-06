@@ -1,9 +1,30 @@
 [
   {
-    "title": "Sample CTF Challenge Writeup",
-    "file": "sample-ctf-writeup.md",
-    "ctf": "Example CTF 2026",
-    "date": "May 2026",
-    "summary": "A sample writeup to demonstrate the format. Replace this with your real CTF writeups."
+    "title": "NEXSEC 2025 - Reverse Engineering",
+    "file": "nexsec25-reverse-engineering.md",
+    "ctf": "NEXSEC 2025",
+    "date": "2025",
+    "summary": "Residual Implant, Advisory Deception #1-4, Stolen Credentials, Photo Viewer Gone Rogue, Birthday Trap."
+  },
+  {
+    "title": "NEXSEC 2025 - Malware Analysis",
+    "file": "nexsec25-malware-analysis.md",
+    "ctf": "NEXSEC 2025",
+    "date": "2025",
+    "summary": "Speed Test Anomaly #1-4 -- dnSpy decompilation, DLL analysis, and domain extraction."
+  },
+  {
+    "title": "NEXSEC 2025 - Incident Response",
+    "file": "nexsec25-incident-response.md",
+    "ctf": "NEXSEC 2025",
+    "date": "2025",
+    "summary": "Here's the Dump #1-2, Breadcrumbs #1-13, Classic #1-7 -- full attack chain reconstruction."
+  },
+  {
+    "title": "NEXSEC 2025 - Digital Forensics",
+    "file": "nexsec25-digital-forensics.md",
+    "ctf": "NEXSEC 2025",
+    "date": "2025",
+    "summary": "OhMyFiles #1-10, MEMOIR #1-9 -- disk forensics with FTK Imager and memory analysis with Volatility 3."
   }
 ]
