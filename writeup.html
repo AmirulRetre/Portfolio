@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Writeup | @mirulRetre</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body style="background: var(--bg-hero);">
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-brand">@mirulRetre</a>
+    <div class="nav-links">
+      <a href="index.html#home">Home</a>
+      <a href="index.html#learn">Learn</a>
+      <a href="index.html#writeups">Writeups</a>
+      <a href="index.html#news">Updates</a>
+      <a href="index.html#achievements">Achievements</a>
+      <a href="index.html#links">Links</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main class="writeup-page">
+    <a href="index.html#writeups" class="back-link">&larr; Back to writeups</a>
+    <div id="writeup-content">
+      <p style="color: var(--text-dark-muted);">Loading writeup...</p>
+    </div>
+  </main>
+
+  <footer class="footer" style="background: var(--bg-light); border-top-color: var(--border-light);">
+    <p style="color: var(--text-dark-secondary);">Built by <strong style="color: var(--text-dark);">Amirul Irfan</strong> aka <strong style="color: var(--text-dark);">@mirulRetre</strong></p>
+    <p class="footer-sub" style="color: var(--text-dark-muted);">&copy; 2026</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.querySelector('.nav-links');
+    if (navToggle && navLinks) {
+      navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+      });
+    }
+
+    // Load and render markdown writeup
+    const params = new URLSearchParams(window.location.search);
+    const file = params.get('file');
+    const contentEl = document.getElementById('writeup-content');
+
+    if (!file) {
+      contentEl.innerHTML = '<p>No writeup specified. <a href="index.html#writeups">Go back</a></p>';
+    } else {
+      fetch('writeups/' + file)
+        .then(res => {
+          if (!res.ok) throw new Error('Writeup not found');
+          return res.text();
+        })
+        .then(md => {
+          // Extract title from first heading
+          const titleMatch = md.match(/^#\s+(.+)/m);
+          if (titleMatch) {
+            document.title = titleMatch[1] + ' | @mirulRetre';
+          }
+
+          contentEl.innerHTML = '<div class="writeup-body">' + marked.parse(md) + '</div>';
+        })
+        .catch(() => {
+          contentEl.innerHTML = '<p>Writeup not found. <a href="index.html#writeups" style="color:var(--accent)">Go back</a></p>';
+        });
+    }
+  </script>
+</body>
+</html>

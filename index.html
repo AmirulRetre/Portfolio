@@ -16,6 +16,7 @@
     <div class="nav-links">
       <a href="#home">Home</a>
       <a href="#learn">Learn</a>
+      <a href="#writeups">Writeups</a>
       <a href="#news">Updates</a>
       <a href="#achievements">Achievements</a>
       <a href="#links">Links</a>
@@ -38,21 +39,21 @@
         <div class="terminal-line">
           <span class="prompt">$</span>
           <span class="typed" id="typed-name"></span>
-          <span class="cursor" id="cursor-name">█</span>
+          <span class="cursor" id="cursor-name">_</span>
         </div>
         <div class="terminal-line hidden" id="line-title">
           <span class="prompt">$</span>
           <span class="typed" id="typed-title"></span>
-          <span class="cursor" id="cursor-title">█</span>
+          <span class="cursor" id="cursor-title">_</span>
         </div>
         <div class="terminal-line hidden" id="line-desc">
           <span class="prompt">$</span>
           <span class="typed" id="typed-desc"></span>
-          <span class="cursor" id="cursor-desc">█</span>
+          <span class="cursor" id="cursor-desc">_</span>
         </div>
         <div class="terminal-line hidden" id="line-ready">
           <span class="prompt">$</span>
-          <span class="ready-text">Portfolio loaded. Scroll to explore <span class="blink">▼</span></span>
+          <span class="ready-text">Portfolio loaded. Scroll to explore <span class="blink">v</span></span>
         </div>
       </div>
     </div>
@@ -69,15 +70,15 @@
       <h2 class="section-title">Learning Journey</h2>
       <p class="section-subtitle">Scroll sideways to explore my path</p>
       <div class="scroll-arrows">
-        <button class="scroll-btn" id="scrollLeft" aria-label="Scroll left">←</button>
-        <button class="scroll-btn" id="scrollRight" aria-label="Scroll right">→</button>
+        <button class="scroll-btn" id="scrollLeft" aria-label="Scroll left">&larr;</button>
+        <button class="scroll-btn" id="scrollRight" aria-label="Scroll right">&rarr;</button>
       </div>
     </div>
     <div class="learn-track" id="learnTrack">
 
       <div class="learn-card">
         <div class="card-date">2024</div>
-        <div class="card-icon">🎓</div>
+        <div class="card-icon">&#127891;</div>
         <h3>Started Cybersecurity Journey</h3>
         <p>Began exploring the world of cybersecurity, networking fundamentals, and ethical hacking concepts.</p>
         <span class="card-tag">Foundation</span>
@@ -85,7 +86,7 @@
 
       <div class="learn-card">
         <div class="card-date">2024</div>
-        <div class="card-icon">🏴</div>
+        <div class="card-icon">&#127988;</div>
         <h3>First CTF Competition</h3>
         <p>Participated in my first Capture The Flag competition, learning real-world security challenges.</p>
         <span class="card-tag">CTF</span>
@@ -93,7 +94,7 @@
 
       <div class="learn-card">
         <div class="card-date">2024</div>
-        <div class="card-icon">🔬</div>
+        <div class="card-icon">&#128300;</div>
         <h3>AI Detection Research</h3>
         <p>Completed final year project on AI Detection, exploring the intersection of AI and security.</p>
         <span class="card-tag">Research</span>
@@ -101,15 +102,15 @@
 
       <div class="learn-card">
         <div class="card-date">2025</div>
-        <div class="card-icon">🛡️</div>
-        <h3>Security Tools & Techniques</h3>
+        <div class="card-icon">&#128737;</div>
+        <h3>Security Tools &amp; Techniques</h3>
         <p>Deepened knowledge in penetration testing tools, vulnerability analysis, and defensive security.</p>
         <span class="card-tag">Skills</span>
       </div>
 
       <div class="learn-card">
         <div class="card-date">2025</div>
-        <div class="card-icon">📝</div>
+        <div class="card-icon">&#128221;</div>
         <h3>CTF Writeups</h3>
         <p>Started documenting CTF writeups to share knowledge and build a reference library.</p>
         <span class="card-tag">Documentation</span>
@@ -117,17 +118,31 @@
 
       <div class="learn-card">
         <div class="card-date">2026</div>
-        <div class="card-icon">🚀</div>
+        <div class="card-icon">&#128640;</div>
         <h3>What's Next?</h3>
-        <p>Continuing to grow — more competitions, certifications, and deeper security research ahead.</p>
+        <p>Continuing to grow -- more competitions, certifications, and deeper security research ahead.</p>
         <span class="card-tag">Future</span>
       </div>
 
     </div>
   </section>
 
+  <!-- ========== WRITEUPS ========== -->
+  <section class="section" id="writeups">
+    <div class="section-header">
+      <h2 class="section-title">CTF Writeups</h2>
+      <p class="section-subtitle">Documented solutions and walkthroughs from competitions</p>
+    </div>
+    <div class="writeups-grid" id="writeupsGrid">
+      <!-- Writeup cards are injected here by script.js from writeups/index.json -->
+      <noscript>
+        <p style="text-align:center; color: var(--text-dark-muted);">Enable JavaScript to view writeups.</p>
+      </noscript>
+    </div>
+  </section>
+
   <!-- ========== NEWS / UPDATES ========== -->
-  <section class="section section-alt" id="news">
+  <section class="section" id="news">
     <div class="section-header">
       <h2 class="section-title">Latest Updates</h2>
       <p class="section-subtitle">What I've been up to lately</p>
@@ -145,7 +160,7 @@
         <div class="news-type">Activity</div>
         <time>Apr 2026</time>
         <h3>CTF Competition</h3>
-        <p>Participated in a recent CTF event — writeup coming soon!</p>
+        <p>Participated in a recent CTF event -- writeup coming soon!</p>
       </article>
 
       <article class="news-card blog">
@@ -173,66 +188,79 @@
         <div class="news-type">Blog</div>
         <time>Dec 2025</time>
         <h3>Year in Review</h3>
-        <p>Reflected on a year of growth in cybersecurity — from beginner to active CTF competitor.</p>
+        <p>Reflected on a year of growth in cybersecurity -- from beginner to active CTF competitor.</p>
       </article>
 
     </div>
   </section>
 
-  <!-- ========== ACHIEVEMENTS TIMELINE ========== -->
+  <!-- ========== ACHIEVEMENTS (Wavy Timeline) ========== -->
   <section class="section" id="achievements">
     <div class="section-header">
       <h2 class="section-title">Achievements</h2>
       <p class="section-subtitle">Milestones along the way</p>
     </div>
-    <div class="timeline">
+    <div class="wave-timeline" id="waveTimeline">
+      <svg class="wave-svg" id="waveSvg" preserveAspectRatio="none">
+        <path class="wave-path" id="wavePath"></path>
+      </svg>
+      <div class="wave-milestones">
 
-      <div class="timeline-item left">
-        <div class="timeline-content">
-          <time>2024</time>
-          <h3>Final Year Project Completed</h3>
-          <p>Completed research on AI Detection as part of final year academic requirements.</p>
+        <div class="milestone">
+          <a href="achievements/fyp.html" class="milestone-card">
+            <span class="date">2024</span>
+            <h3>Final Year Project Completed</h3>
+            <p>Completed research on AI Detection as part of final year academic requirements.</p>
+            <span class="view-link">View details &rarr;</span>
+          </a>
+          <div class="milestone-dot"></div>
         </div>
-      </div>
 
-      <div class="timeline-item right">
-        <div class="timeline-content">
-          <time>2024</time>
-          <h3>First CTF Participation</h3>
-          <p>Entered my first Capture The Flag competition and discovered a passion for security challenges.</p>
+        <div class="milestone">
+          <a href="achievements/first-ctf.html" class="milestone-card">
+            <span class="date">2024</span>
+            <h3>First CTF Participation</h3>
+            <p>Entered my first Capture The Flag competition and discovered a passion for security challenges.</p>
+            <span class="view-link">View details &rarr;</span>
+          </a>
+          <div class="milestone-dot"></div>
         </div>
-      </div>
 
-      <div class="timeline-item left">
-        <div class="timeline-content">
-          <time>2025</time>
-          <h3>Started CTF Writeup Collection</h3>
-          <p>Began systematically documenting solutions and approaches for every CTF I participate in.</p>
+        <div class="milestone">
+          <a href="achievements/writeup-collection.html" class="milestone-card">
+            <span class="date">2025</span>
+            <h3>Started CTF Writeup Collection</h3>
+            <p>Began systematically documenting solutions and approaches for every CTF I participate in.</p>
+            <span class="view-link">View details &rarr;</span>
+          </a>
+          <div class="milestone-dot"></div>
         </div>
-      </div>
 
-      <div class="timeline-item right">
-        <div class="timeline-content">
-          <time>2026</time>
-          <h3>Portfolio Website Launched</h3>
-          <p>Built and deployed a personal portfolio to showcase projects, writeups, and achievements.</p>
+        <div class="milestone">
+          <a href="achievements/portfolio.html" class="milestone-card">
+            <span class="date">2026</span>
+            <h3>Portfolio Website Launched</h3>
+            <p>Built and deployed a personal portfolio to showcase projects, writeups, and achievements.</p>
+            <span class="view-link">View details &rarr;</span>
+          </a>
+          <div class="milestone-dot"></div>
         </div>
-      </div>
 
-      <!-- Add more achievements here -->
-      <div class="timeline-item left">
-        <div class="timeline-content placeholder">
-          <time>Coming</time>
-          <h3>Next Milestone</h3>
-          <p>More achievements loading... Stay tuned.</p>
+        <div class="milestone">
+          <div class="milestone-card placeholder">
+            <span class="date">Coming</span>
+            <h3>Next Milestone</h3>
+            <p>More achievements loading... Stay tuned.</p>
+          </div>
+          <div class="milestone-dot"></div>
         </div>
-      </div>
 
+      </div>
     </div>
   </section>
 
   <!-- ========== LINKS ========== -->
-  <section class="section section-alt" id="links">
+  <section class="section" id="links">
     <div class="section-header">
       <h2 class="section-title">Find Me Online</h2>
       <p class="section-subtitle">Connect with me across the web</p>
@@ -255,12 +283,12 @@
         <span class="link-url">Amirul Irfan</span>
       </a>
 
-      <a href="mailto:lanzailan2344@gmail.com" class="link-card">
+      <a href="mailto:amirulirfan2283@gmail.com" class="link-card">
         <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor">
           <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
         </svg>
         <span class="link-label">Email</span>
-        <span class="link-url">lanzailan2344@gmail.com</span>
+        <span class="link-url">amirulirfan2283@gmail.com</span>
       </a>
 
     </div>
@@ -269,9 +297,11 @@
   <!-- ========== FOOTER ========== -->
   <footer class="footer">
     <p>Built by <strong>Amirul Irfan</strong> aka <strong>@mirulRetre</strong></p>
-    <p class="footer-sub">© 2026 — All rights reserved</p>
+    <p class="footer-sub">&copy; 2026</p>
   </footer>
 
+  <!-- Markdown parser for writeups -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
