@@ -491,11 +491,10 @@ a { color: inherit; text-decoration: none; }
   position: relative;
   max-width: 1000px;
   margin: 0 auto;
-  padding: 2rem 1rem;
-  overflow: hidden;
+  padding: 2rem 0;
 }
 
-.wave-svg {
+.wave-canvas {
   position: absolute;
   top: 0;
   left: 0;
@@ -505,84 +504,47 @@ a { color: inherit; text-decoration: none; }
   z-index: 0;
 }
 
-.wave-path {
-  fill: none;
-  stroke: var(--accent);
-  stroke-width: 2.5;
-  opacity: 0.5;
-  filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.3));
-}
-
-.wave-milestones {
+.milestone-row {
   position: relative;
   z-index: 1;
   display: flex;
-  flex-direction: column;
-  gap: 0;
+  padding: 1.5rem 1rem;
 }
 
-.milestone {
-  display: flex;
-  align-items: flex-start;
-  position: relative;
-  padding: 2rem 0;
-}
-
-.milestone:nth-child(odd) {
+.milestone-row.left {
   justify-content: flex-start;
-  padding-left: 5%;
+  padding-right: 52%;
 }
 
-.milestone:nth-child(even) {
+.milestone-row.right {
   justify-content: flex-end;
-  padding-right: 5%;
-}
-
-.milestone-dot {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--accent);
-  border: 3px solid var(--bg-dark);
-  box-shadow: 0 0 12px var(--accent-glow);
-  flex-shrink: 0;
-  z-index: 2;
-  position: absolute;
-  top: 2.5rem;
-}
-
-.milestone:nth-child(odd) .milestone-dot {
-  right: 48%;
-}
-
-.milestone:nth-child(even) .milestone-dot {
-  left: 48%;
+  padding-left: 52%;
 }
 
 .milestone-card {
-  max-width: 380px;
-  background: var(--bg-card-dark);
-  border: 1px solid var(--border-dark);
-  border-radius: var(--radius);
+  width: 100%;
+  background: #1c1e2c;
+  border: 1px solid #2a2c3e;
+  border-radius: 12px;
   padding: 1.5rem;
-  transition: var(--transition);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   text-decoration: none;
-  color: var(--text-light);
+  color: #e4e4e7;
   display: block;
 }
 
 .milestone-card:hover {
-  border-color: var(--accent);
+  border-color: #3b82f6;
   transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.12);
-  background: var(--bg-card-dark-hover);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.15);
+  background: #232538;
 }
 
 .milestone-card .date {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--accent);
+  color: #3b82f6;
   font-weight: 700;
   display: block;
   margin-bottom: 0.5rem;
@@ -592,12 +554,12 @@ a { color: inherit; text-decoration: none; }
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 0.4rem;
-  color: var(--text-light);
+  color: #e4e4e7;
 }
 
 .milestone-card p {
   font-size: 0.85rem;
-  color: var(--text-light-secondary);
+  color: #a1a1aa;
   line-height: 1.5;
   margin-bottom: 0.75rem;
 }
@@ -605,9 +567,9 @@ a { color: inherit; text-decoration: none; }
 .milestone-card .view-link {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--accent);
+  color: #3b82f6;
   opacity: 0;
-  transition: opacity var(--transition);
+  transition: opacity 0.3s ease;
 }
 
 .milestone-card:hover .view-link {
@@ -623,7 +585,7 @@ a { color: inherit; text-decoration: none; }
 .milestone-card.placeholder:hover {
   transform: none;
   box-shadow: none;
-  background: var(--bg-card-dark);
+  background: #1c1e2c;
 }
 
 /* ========== WRITEUPS SECTION ========== */
@@ -952,22 +914,14 @@ a { color: inherit; text-decoration: none; }
   }
 
   /* Wave timeline: stack vertically on mobile */
-  .milestone {
-    justify-content: center !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+  .milestone-row.left,
+  .milestone-row.right {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    justify-content: center;
   }
 
-  .milestone-dot {
-    display: none;
-  }
-
-  .milestone-card {
-    max-width: 100%;
-    width: 100%;
-  }
-
-  .wave-svg {
+  .wave-canvas {
     display: none;
   }
 

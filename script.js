@@ -128,58 +128,115 @@ if (learnTrack && scrollLeftBtn && scrollRightBtn) {
   learnTrack.style.cursor = 'grab';
 }
 
-// ---- Wavy Achievement Timeline ----
+// ---- Wavy Achievement Timeline (Canvas) ----
 function initWaveTimeline() {
-  const container = document.getElementById('waveTimeline');
-  const svg = document.getElementById('waveSvg');
-  const path = document.getElementById('wavePath');
-  if (!container || !svg || !path) return;
+  var container = document.getElementById('waveTimeline');
+  var canvas = document.getElementById('waveCanvas');
+  if (!container || !canvas) return;
 
-  let phase = 0;
-  let scrollProgress = 0;
+  var ctx = canvas.getContext('2d');
+  var phase = 0;
+  var lastScroll = 0;
+  var isVisible = false;
+
+  function resize() {
+    var rect = container.getBoundingClientRect();
+    var dpr = window.devicePixelRatio || 1;
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    canvas.style.width = rect.width + 'px';
+    canvas.style.height = rect.height + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
 
   function drawWave() {
-    const w = container.offsetWidth;
-    const h = container.offsetHeight;
-    svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+    var w = canvas.style.width ? parseInt(canvas.style.width) : container.offsetWidth;
+    var h = canvas.style.height ? parseInt(canvas.style.height) : container.offsetHeight;
 
-    const amplitude = 40 + Math.sin(phase * 0.5) * 10;
-    const frequency = 0.008;
-    const centerX = w / 2;
+    ctx.clearRect(0, 0, w, h);
 
-    let d = 'M ' + centerX + ' 0';
+    var centerX = w / 2;
+    var amplitude = 120 + Math.sin(phase * 0.3) * 30;
+    var freq = 0.006;
 
-    for (let y = 0; y <= h; y += 2) {
-      const wave1 = Math.sin((y * frequency) + phase) * amplitude;
-      const wave2 = Math.sin((y * frequency * 0.7) + phase * 1.3) * (amplitude * 0.4);
-      const x = centerX + wave1 + wave2;
-      d += ' L ' + x.toFixed(1) + ' ' + y;
+    // Main wave line
+    ctx.beginPath();
+    ctx.moveTo(centerX, 0);
+
+    for (var y = 0; y <= h; y += 1) {
+      var wave1 = Math.sin(y * freq + phase) * amplitude;
+      var wave2 = Math.sin(y * freq * 0.6 + phase * 1.4) * (amplitude * 0.3);
+      var x = centerX + wave1 + wave2;
+      ctx.lineTo(x, y);
     }
 
-    path.setAttribute('d', d);
+    ctx.strokeStyle = 'rgba(59, 130, 246, 0.35)';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+
+    // Glow layer
+    ctx.beginPath();
+    ctx.moveTo(centerX, 0);
+    for (var y2 = 0; y2 <= h; y2 += 1) {
+      var gw1 = Math.sin(y2 * freq + phase) * amplitude;
+      var gw2 = Math.sin(y2 * freq * 0.6 + phase * 1.4) * (amplitude * 0.3);
+      ctx.lineTo(centerX + gw1 + gw2, y2);
+    }
+    ctx.strokeStyle = 'rgba(59, 130, 246, 0.1)';
+    ctx.lineWidth = 10;
+    ctx.stroke();
+
+    // Draw dots at milestone positions
+    var rows = container.querySelectorAll('.milestone-row');
+    rows.forEach(function(row) {
+      var rowRect = row.getBoundingClientRect();
+      var containerRect = container.getBoundingClientRect();
+      var dotY = rowRect.top - containerRect.top + rowRect.height / 2;
+      var dotWave1 = Math.sin(dotY * freq + phase) * amplitude;
+      var dotWave2 = Math.sin(dotY * freq * 0.6 + phase * 1.4) * (amplitude * 0.3);
+      var dotX = centerX + dotWave1 + dotWave2;
+
+      // Outer glow
+      ctx.beginPath();
+      ctx.arc(dotX, dotY, 10, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(59, 130, 246, 0.2)';
+      ctx.fill();
+
+      // Inner dot
+      ctx.beginPath();
+      ctx.arc(dotX, dotY, 5, 0, Math.PI * 2);
+      ctx.fillStyle = '#3b82f6';
+      ctx.fill();
+    });
   }
 
   function animate() {
-    // Gentle continuous motion + scroll-driven offset
-    phase += 0.015;
-    drawWave();
+    if (isVisible) {
+      phase += 0.012;
+      drawWave();
+    }
     requestAnimationFrame(animate);
   }
 
-  // Scroll drives additional wave movement
-  window.addEventListener('scroll', () => {
-    const rect = container.getBoundingClientRect();
-    const viewH = window.innerHeight;
-    if (rect.top < viewH && rect.bottom > 0) {
-      const progress = (viewH - rect.top) / (viewH + rect.height);
-      phase += (progress - scrollProgress) * 2;
-      scrollProgress = progress;
-    }
+  // Check visibility
+  var observer = new IntersectionObserver(function(entries) {
+    isVisible = entries[0].isIntersecting;
+  }, { threshold: 0 });
+  observer.observe(container);
+
+  // Scroll drives wave
+  window.addEventListener('scroll', function() {
+    var scrollDelta = window.scrollY - lastScroll;
+    phase += scrollDelta * 0.003;
+    lastScroll = window.scrollY;
+  }, { passive: true });
+
+  window.addEventListener('resize', function() {
+    resize();
+    drawWave();
   });
 
-  // Resize handler
-  window.addEventListener('resize', drawWave);
-
+  resize();
   animate();
 }
 
@@ -247,7 +304,7 @@ function initReveal() {
   );
 
   const revealElements = document.querySelectorAll(
-    '.learn-card, .news-card, .milestone, .link-card'
+    '.learn-card, .news-card, .milestone-row, .link-card'
   );
 
   revealElements.forEach(el => {
