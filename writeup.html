@@ -3,12 +3,193 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Writeup | @mirulRetre</title>
+  <title>Writeups | @mirulRetre</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { background: #eef0f5; }
+
+    .writeup-layout {
+      display: flex;
+      min-height: calc(100vh - 60px);
+      padding-top: 60px;
+    }
+
+    /* ---- Sidebar ---- */
+    .writeup-sidebar {
+      width: 280px;
+      flex-shrink: 0;
+      background: #ffffff;
+      border-right: 1px solid #e0e2ea;
+      padding: 1.5rem 0;
+      overflow-y: auto;
+      position: sticky;
+      top: 60px;
+      height: calc(100vh - 60px);
+    }
+
+    .sidebar-header {
+      padding: 0 1.25rem 1rem;
+      border-bottom: 1px solid #e0e2ea;
+      margin-bottom: 0.75rem;
+    }
+
+    .sidebar-header h2 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 0.25rem;
+    }
+
+    .sidebar-header a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: #3b82f6;
+    }
+
+    .sidebar-header a:hover { text-decoration: underline; }
+
+    .sidebar-category {
+      padding: 0 0.75rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .category-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #1a1a2e;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+
+    .category-toggle:hover {
+      background: #f0f1f5;
+    }
+
+    .category-toggle .arrow {
+      font-size: 0.65rem;
+      color: #8888a0;
+      transition: transform 0.2s;
+      display: inline-block;
+    }
+
+    .category-toggle.open .arrow {
+      transform: rotate(90deg);
+    }
+
+    .category-items {
+      display: none;
+      padding-left: 1.25rem;
+    }
+
+    .category-items.open {
+      display: block;
+    }
+
+    .category-items a {
+      display: block;
+      padding: 0.4rem 0.75rem;
+      font-size: 0.78rem;
+      color: #5a5a7a;
+      border-radius: 4px;
+      border-left: 2px solid transparent;
+      transition: all 0.2s;
+      line-height: 1.4;
+      margin-bottom: 1px;
+    }
+
+    .category-items a:hover {
+      color: #3b82f6;
+      background: rgba(59, 130, 246, 0.05);
+      border-left-color: #3b82f6;
+    }
+
+    .category-items a.active {
+      color: #3b82f6;
+      background: rgba(59, 130, 246, 0.08);
+      border-left-color: #3b82f6;
+      font-weight: 500;
+    }
+
+    /* ---- Content Area ---- */
+    .writeup-content-area {
+      flex: 1;
+      padding: 2.5rem 3rem;
+      max-width: 820px;
+      overflow-y: auto;
+    }
+
+    .writeup-content-area .empty-state {
+      text-align: center;
+      padding: 6rem 2rem;
+      color: #8888a0;
+    }
+
+    .writeup-content-area .empty-state h2 {
+      font-size: 1.25rem;
+      color: #4a4a6a;
+      margin-bottom: 0.5rem;
+    }
+
+    .writeup-content-area .empty-state p {
+      font-size: 0.9rem;
+    }
+
+    /* ---- Mobile sidebar toggle ---- */
+    .sidebar-toggle-btn {
+      display: none;
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 50;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #3b82f6;
+      color: #fff;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      .writeup-sidebar {
+        position: fixed;
+        left: -300px;
+        top: 60px;
+        z-index: 50;
+        transition: left 0.3s ease;
+        box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+      }
+
+      .writeup-sidebar.open {
+        left: 0;
+      }
+
+      .sidebar-toggle-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .writeup-content-area {
+        padding: 1.5rem 1rem;
+      }
+    }
+  </style>
 </head>
-<body style="background: var(--bg-hero);">
+<body>
 
   <!-- Navigation -->
   <nav class="nav" id="nav">
@@ -26,54 +207,143 @@
     </button>
   </nav>
 
-  <main class="writeup-page">
-    <a href="index.html#writeups" class="back-link">&larr; Back to writeups</a>
-    <div id="writeup-content">
-      <p style="color: var(--text-dark-muted);">Loading writeup...</p>
-    </div>
-  </main>
+  <div class="writeup-layout">
+    <!-- Sidebar -->
+    <aside class="writeup-sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>Writeups</h2>
+        <a href="index.html#writeups">&larr; Back to portfolio</a>
+      </div>
+      <div id="sidebarTree">
+        <p style="padding: 1rem; font-size: 0.8rem; color: #8888a0;">Loading...</p>
+      </div>
+    </aside>
 
-  <footer class="footer" style="background: var(--bg-light); border-top-color: var(--border-light);">
-    <p style="color: var(--text-dark-secondary);">Built by <strong style="color: var(--text-dark);">Amirul Irfan</strong> aka <strong style="color: var(--text-dark);">@mirulRetre</strong></p>
-    <p class="footer-sub" style="color: var(--text-dark-muted);">&copy; 2026</p>
-  </footer>
+    <!-- Content -->
+    <main class="writeup-content-area" id="writeupContent">
+      <div class="empty-state">
+        <h2>Select a writeup</h2>
+        <p>Choose a writeup from the sidebar to start reading.</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Mobile sidebar toggle -->
+  <button class="sidebar-toggle-btn" id="sidebarToggle" aria-label="Toggle sidebar">&#9776;</button>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
-    // Mobile nav toggle
-    const navToggle = document.getElementById('navToggle');
-    const navLinks = document.querySelector('.nav-links');
+    // Mobile nav
+    var navToggle = document.getElementById('navToggle');
+    var navLinks = document.querySelector('.nav-links');
     if (navToggle && navLinks) {
-      navToggle.addEventListener('click', () => {
+      navToggle.addEventListener('click', function() {
         navLinks.classList.toggle('open');
       });
     }
 
-    // Load and render markdown writeup
-    const params = new URLSearchParams(window.location.search);
-    const file = params.get('file');
-    const contentEl = document.getElementById('writeup-content');
+    // Mobile sidebar
+    var sidebarToggle = document.getElementById('sidebarToggle');
+    var sidebar = document.getElementById('sidebar');
+    if (sidebarToggle && sidebar) {
+      sidebarToggle.addEventListener('click', function() {
+        sidebar.classList.toggle('open');
+      });
+    }
 
-    if (!file) {
-      contentEl.innerHTML = '<p>No writeup specified. <a href="index.html#writeups">Go back</a></p>';
-    } else {
-      fetch('writeups/' + file)
-        .then(res => {
-          if (!res.ok) throw new Error('Writeup not found');
+    var contentArea = document.getElementById('writeupContent');
+    var sidebarTree = document.getElementById('sidebarTree');
+
+    // Load writeup index and build sidebar tree
+    fetch('writeups/index.json')
+      .then(function(res) { return res.json(); })
+      .then(function(writeups) {
+        // Group by CTF name (category)
+        var categories = {};
+        writeups.forEach(function(w) {
+          var cat = w.ctf || 'Other';
+          if (!categories[cat]) categories[cat] = [];
+          categories[cat].push(w);
+        });
+
+        var html = '';
+        Object.keys(categories).forEach(function(cat) {
+          var items = categories[cat];
+          html += '<div class="sidebar-category">';
+          html += '<button class="category-toggle open" onclick="this.classList.toggle(\'open\'); this.nextElementSibling.classList.toggle(\'open\');">';
+          html += '<span class="arrow">&#9654;</span> ' + escapeHtml(cat);
+          html += '</button>';
+          html += '<div class="category-items open">';
+          items.forEach(function(w) {
+            html += '<a href="#" data-file="' + escapeHtml(w.file) + '" title="' + escapeHtml(w.title) + '">';
+            html += escapeHtml(w.title.replace(cat + ' - ', ''));
+            html += '</a>';
+          });
+          html += '</div></div>';
+        });
+
+        sidebarTree.innerHTML = html;
+
+        // Click handlers for writeup links
+        sidebarTree.querySelectorAll('a[data-file]').forEach(function(link) {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Remove active from all
+            sidebarTree.querySelectorAll('a.active').forEach(function(a) { a.classList.remove('active'); });
+            link.classList.add('active');
+            loadWriteup(link.getAttribute('data-file'));
+            // Close mobile sidebar
+            sidebar.classList.remove('open');
+          });
+        });
+
+        // Check if URL has a file param, auto-load it
+        var params = new URLSearchParams(window.location.search);
+        var fileParam = params.get('file');
+        if (fileParam) {
+          var matchLink = sidebarTree.querySelector('a[data-file="' + fileParam + '"]');
+          if (matchLink) {
+            matchLink.classList.add('active');
+            // Expand its parent category
+            var parentItems = matchLink.closest('.category-items');
+            if (parentItems) parentItems.classList.add('open');
+            var parentToggle = parentItems ? parentItems.previousElementSibling : null;
+            if (parentToggle) parentToggle.classList.add('open');
+          }
+          loadWriteup(fileParam);
+        }
+      })
+      .catch(function() {
+        sidebarTree.innerHTML = '<p style="padding:1rem;font-size:0.8rem;color:#8888a0;">No writeups found.</p>';
+      });
+
+    function loadWriteup(filename) {
+      contentArea.innerHTML = '<p style="color:#8888a0;">Loading...</p>';
+
+      fetch('writeups/' + filename)
+        .then(function(res) {
+          if (!res.ok) throw new Error('Not found');
           return res.text();
         })
-        .then(md => {
-          // Extract title from first heading
-          const titleMatch = md.match(/^#\s+(.+)/m);
+        .then(function(md) {
+          var titleMatch = md.match(/^#\s+(.+)/m);
           if (titleMatch) {
             document.title = titleMatch[1] + ' | @mirulRetre';
           }
-
-          contentEl.innerHTML = '<div class="writeup-body">' + marked.parse(md) + '</div>';
+          contentArea.innerHTML = '<div class="writeup-body">' + marked.parse(md) + '</div>';
+          contentArea.scrollTop = 0;
+          // Update URL without reload
+          history.replaceState(null, '', 'writeup.html?file=' + encodeURIComponent(filename));
         })
-        .catch(() => {
-          contentEl.innerHTML = '<p>Writeup not found. <a href="index.html#writeups" style="color:var(--accent)">Go back</a></p>';
+        .catch(function() {
+          contentArea.innerHTML = '<p style="color:#8888a0;">Writeup not found.</p>';
         });
+    }
+
+    function escapeHtml(str) {
+      var div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
     }
   </script>
 </body>
