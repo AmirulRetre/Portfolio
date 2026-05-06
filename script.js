@@ -210,25 +210,18 @@ function initWaveTimeline() {
     });
   }
 
-  function animate() {
-    if (isVisible) {
-      phase += 0.012;
-      drawWave();
-    }
-    requestAnimationFrame(animate);
-  }
-
-  // Check visibility
-  var observer = new IntersectionObserver(function(entries) {
-    isVisible = entries[0].isIntersecting;
-  }, { threshold: 0 });
-  observer.observe(container);
-
-  // Scroll drives wave
+  // Only animate on scroll -- wave stays still until user scrolls
   window.addEventListener('scroll', function() {
     var scrollDelta = window.scrollY - lastScroll;
-    phase += scrollDelta * 0.003;
     lastScroll = window.scrollY;
+
+    // Only redraw when the section is near the viewport
+    var rect = container.getBoundingClientRect();
+    var viewH = window.innerHeight;
+    if (rect.top < viewH + 200 && rect.bottom > -200) {
+      phase += scrollDelta * 0.008;
+      drawWave();
+    }
   }, { passive: true });
 
   window.addEventListener('resize', function() {
@@ -237,7 +230,7 @@ function initWaveTimeline() {
   });
 
   resize();
-  animate();
+  drawWave();
 }
 
 // ---- Writeup Loader ----
